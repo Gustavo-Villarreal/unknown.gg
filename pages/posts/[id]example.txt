@@ -1,0 +1,70 @@
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { API } from "aws-amplify";
+import '../../configureAmplify'
+import { listPosts, getPost } from "../../src/graphql/queries";
+
+const Post = () => {
+    const [post, setPost] = useState('')
+    const router = useRouter()
+    
+    useEffect(()=>{
+        const getData = async () => {
+            let { id } = router.query
+            const postData = await API.graphql({
+                query: getPost,
+                variables: { id }
+            })
+            setPost(postData.data.getPost)
+        }
+        getData()
+    },[])
+
+    /* if(router.isFallback){
+        return <div>Loading...</div>
+    } */
+    if(!post){
+        return <div>Loading...</div>
+    }
+    return(
+        <div>
+            <h1 className="text-5xl font-bold text-neutral-50">
+                {post?.title || 'test'}
+            </h1>
+            <p className="text-xl font-semibold text-neutral-300">
+                {post?.description}
+            </p>
+            <p className="text-l text-neutral-500">
+                by: {post?.username}
+            </p>
+        </div>
+    )
+}
+export default Post
+
+/* export async function getStaticPaths() {
+    const postData = await API.graphql({
+        query: listPosts
+    })
+    const paths = postData.data.listPosts.items.map(post => ({
+         params: { id: post.id }
+    }))
+    return {
+        paths,
+        fallback: true
+    }
+}
+
+export async function getStaticProps({ params }){
+    const { id } = params 
+    const postData = await API.graphql({
+        query: getPost,
+        variables: { id }
+    })
+    return {
+        props: {
+            post: postData.data.getPost
+        },
+        revalidate:1
+    }
+} */

@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body{
+    background-color: #262626;
+}
+
+:root{
+    --amplify-background-color:#44403c;
+    --amplify-primary-color:#8b5cf6;
+    --amplify-secondary-color:#fafafa;
+    --amplify-primary-tint:#fafafa;
+    --amplify-primary-shade:#4c1d95;
+    --amplify-grey:#d4d4d4;
+    --amplify-light-grey:#4c4c4c;
+    --amplify-secondary-contrast:#262626
+}

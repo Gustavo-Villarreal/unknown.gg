@@ -8,10 +8,22 @@ export const createPost = /* GraphQL */ `
   ) {
     createPost(input: $input, condition: $condition) {
       id
-      name
+      title
       description
       username
       coverImage
+      comments {
+        items {
+          id
+          postID
+          content
+          parentID
+          username
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -24,10 +36,22 @@ export const updatePost = /* GraphQL */ `
   ) {
     updatePost(input: $input, condition: $condition) {
       id
-      name
+      title
       description
       username
       coverImage
+      comments {
+        items {
+          id
+          postID
+          content
+          parentID
+          username
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -40,10 +64,106 @@ export const deletePost = /* GraphQL */ `
   ) {
     deletePost(input: $input, condition: $condition) {
       id
-      name
+      title
       description
       username
       coverImage
+      comments {
+        items {
+          id
+          postID
+          content
+          parentID
+          username
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createComment = /* GraphQL */ `
+  mutation CreateComment(
+    $input: CreateCommentInput!
+    $condition: ModelCommentConditionInput
+  ) {
+    createComment(input: $input, condition: $condition) {
+      id
+      postID
+      post {
+        id
+        title
+        description
+        username
+        coverImage
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      content
+      parentID
+      username
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateComment = /* GraphQL */ `
+  mutation UpdateComment(
+    $input: UpdateCommentInput!
+    $condition: ModelCommentConditionInput
+  ) {
+    updateComment(input: $input, condition: $condition) {
+      id
+      postID
+      post {
+        id
+        title
+        description
+        username
+        coverImage
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      content
+      parentID
+      username
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteComment = /* GraphQL */ `
+  mutation DeleteComment(
+    $input: DeleteCommentInput!
+    $condition: ModelCommentConditionInput
+  ) {
+    deleteComment(input: $input, condition: $condition) {
+      id
+      postID
+      post {
+        id
+        title
+        description
+        username
+        coverImage
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      content
+      parentID
+      username
       createdAt
       updatedAt
     }
