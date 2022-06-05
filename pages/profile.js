@@ -1,10 +1,12 @@
 import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
-import { Auth } from "aws-amplify";
+import { useRouter } from 'next/router';
+import { API, Auth } from "aws-amplify";
 import { useState, useEffect } from "react";
+import { deleteUserData } from '../src/graphql/mutations'
 
-const Profile = () => {
+const Profile = ({signOut}) => {
     const [user, setUser] = useState({})
-
+    const router = useRouter()
     useEffect(()=>{
         checkUser()
     },[])
@@ -13,7 +15,14 @@ const Profile = () => {
         const user = await Auth.currentAuthenticatedUser()
         setUser(user)
     }
-    console.log(user);
+    const deleteUserClick = async () => {
+        let response = await API.graphql({
+            query:deleteUserData,
+            authMode: "AMAZON_COGNITO_USER_POOLS"
+        })
+        console.log(response);
+    }
+
     if(!user) return null
 
     return(
@@ -30,6 +39,9 @@ const Profile = () => {
             <div className="w-1">
                 <AmplifySignOut/>
             </div>
+            <button className="w-100 p-3 bg-red-700" onClick={deleteUserClick}>
+                deleteUserData
+            </button>
         </div>
     )
 }

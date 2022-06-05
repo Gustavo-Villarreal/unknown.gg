@@ -4,12 +4,12 @@ import NavBar from '../components/navbar'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <div data-theme="synthwave">
       <NavBar/>
-      <div className='px-16 py-7 '>
+      <div>
         <Component {...pageProps} />
       </div>
-    </>
+    </div>
   )
 }
 

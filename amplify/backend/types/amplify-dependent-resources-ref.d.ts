@@ -16,5 +16,19 @@ export type AmplifyDependentResourcesAttributes = {
             "AppClientIDWeb": "string",
             "AppClientID": "string"
         }
+    },
+    "function": {
+        "deleteUserData": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string"
+        }
+    },
+    "storage": {
+        "postImages": {
+            "BucketName": "string",
+            "Region": "string"
+        }
     }
 }

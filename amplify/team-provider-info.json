@@ -13,7 +13,14 @@
     },
     "categories": {
       "auth": {
-        "unknownggc60a3b0f": {}
+        "unknownggc60a3b0f": {},
+        "true": {}
+      },
+      "function": {
+        "deleteUserData": {
+          "deploymentBucketName": "amplify-unknowngg-dev-221750-deployment",
+          "s3Key": "amplify-builds/deleteUserData-32466433415567775734-build.zip"
+        }
       }
     }
   }

@@ -31,3 +31,7 @@ type Comment @model
   parentID:ID
   username: String @index(name: "commentByUsername", queryField:"commentByUsername")
 }
+
+type Mutation{
+  deleteUserData: Boolean! @function(name: "deleteUserData-${env}")
+}

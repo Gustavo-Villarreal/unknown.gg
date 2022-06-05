@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import { API } from "aws-amplify";
 import '../../configureAmplify'
 import { getPost } from "../../src/graphql/queries";
-import useCommentInput from "../../hooks/useCommentInput";
 
 import Comment from '../../components/comment'
+import CommentInput from "../../components/commentInput";
 
 const Post = ({ post }) => {
     const [comments, setComments] = useState(post?.comments || [])
-    const commentInput = useCommentInput(post, null)
     //To query data from uri you get it from router.query[id] where [id] is the name of the file you are in
     /*
         const router = useRouter()
@@ -28,7 +27,7 @@ const Post = ({ post }) => {
                     {
                         (comment.sons.length > 0) &&
                         <div className="pl-4 relative">
-                            <div className="absolute top-0 bottom-0 border-l-2"/>
+                            <div className="absolute top-12 bottom-0 border-l-2"/>
                             {renderComments(comment.sons)}
                         </div>
                     }
@@ -40,7 +39,7 @@ const Post = ({ post }) => {
 
 
     return(
-        <div>
+        <div className='mx-auto max-w-4xl mt-10'>
             <h1 className="text-5xl font-bold text-neutral-50">
                 {post?.title || 'test'}
             </h1>
@@ -51,7 +50,9 @@ const Post = ({ post }) => {
                 by: {post?.username}
             </p>
 
-            {commentInput}
+            <div className="mt-2">
+                <CommentInput post={post}/>
+            </div>
 
             {renderComments(comments)}
         </div>
@@ -89,7 +90,7 @@ export async function getStaticProps({ params }){
 export async function getServerSideProps({ res, params }){
     res.setHeader(
         'Cache-Control',
-        'public, s-maxage=60, stale-while-revalidate=59'
+        'public, maxage=60, stale-while-revalidate=59'
     )
 
     const { id } = params 

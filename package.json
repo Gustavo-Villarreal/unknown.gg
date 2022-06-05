@@ -10,10 +10,13 @@
   },
   "dependencies": {
     "@aws-amplify/ui-react": "^1.2.26",
+    "@headlessui/react": "^1.6.4",
     "aws-amplify": "^4.3.24",
+    "daisyui": "^2.15.2",
     "next": "12.1.6",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",

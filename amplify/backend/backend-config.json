@@ -50,5 +50,29 @@
         ]
       }
     }
-  }
+  },
+  "function": {
+    "deleteUserData": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "unknowngg",
+          "attributes": [
+            "GraphQLAPIIdOutput"
+          ]
+        }
+      ]
+    }
+  },
+  "storage": {
+    "postImages": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    }
+  },
+  "hosting": {}
 }

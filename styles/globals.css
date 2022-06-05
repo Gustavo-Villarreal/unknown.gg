@@ -16,3 +16,8 @@ body{
     --amplify-light-grey:#4c4c4c;
     --amplify-secondary-contrast:#262626
 }
+
+.landng-header{
+    background-image: url('../assets/triangles.png');
+    min-height: 340px;
+}
